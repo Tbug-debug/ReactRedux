@@ -2,15 +2,11 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { actionCreators } from "../store";
 import { ToDo } from "../store";
+import { Dispatch } from "redux";
 
 interface ToDoProps {
   text: string;
   onBtnClick: () => void;
-  id: number;
-}
-
-interface OwnProps {
-  type: string;
   id: number;
 }
 
@@ -23,7 +19,7 @@ function ToDos({ text, onBtnClick, id }: ToDoProps) {
   );
 }
 
-function mapDispatchToProps(dispatch: (e: OwnProps) => void, ownProps: ToDo) {
+function mapDispatchToProps(dispatch: Dispatch, ownProps: ToDo) {
   return {
     onBtnClick: () => dispatch(actionCreators.deleteToDo(ownProps.id)),
   };

@@ -48,6 +48,8 @@ const reducer = (state: ToDo[] = [], action: ToDoAction) => {
 
 const store = legacy_createStore(reducer); //상태 변경후 store에 저장
 
+export type RooteState = ReturnType<typeof store.getState>;
+
 export const actionCreators = {
   //오브젝트 형태로 저장한다.
   addToDo,

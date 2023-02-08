@@ -2,15 +2,12 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import ToDo from "../components/ToDo";
 import { actionCreators, ToDo as ToDoType } from "../store";
+import { RooteState } from "../store";
+import { Dispatch } from "redux";
 
 interface HomeProps {
   toDos: ToDoType[];
   addToDo: (text: string) => void;
-}
-
-interface Dispatch {
-  type: string;
-  text: string;
 }
 
 function Home({ toDos, addToDo }: HomeProps) {
@@ -42,13 +39,12 @@ function Home({ toDos, addToDo }: HomeProps) {
   );
 }
 
-function mapStateToProps(state: ToDoType[]) {
+function mapStateToProps(state: RooteState) {
   //store의 정보를 불러옴
   return { toDos: state };
 }
 
-function mapDispatchToProps(dispatch: (e: Dispatch) => void) {
-  console.log(dispatch);
+function mapDispatchToProps(dispatch: Dispatch) {
   //dispatch를 통해서 reducer에게 전달
   return {
     addToDo: (text: string) => dispatch(actionCreators.addToDo(text)),

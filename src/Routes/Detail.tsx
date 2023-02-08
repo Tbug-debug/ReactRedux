@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
+import { RooteState } from "../store";
 import { ToDo } from "../store";
 
 interface DetailProps {
@@ -8,7 +9,6 @@ interface DetailProps {
 
 const Detail = ({ toDos }: DetailProps) => {
   const { id } = useParams();
-  console.log(toDos);
   const todo = toDos.find((todo) => todo.id === parseInt(id as string));
   return (
     <>
@@ -18,7 +18,7 @@ const Detail = ({ toDos }: DetailProps) => {
   );
 };
 
-function mapStateToProps(state: ToDo[]) {
+function mapStateToProps(state: RooteState) {
   return { toDos: state };
 }
 
